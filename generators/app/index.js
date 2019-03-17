@@ -1,16 +1,15 @@
 "use strict";
 const Generator = require("yeoman-generator");
-const { green } = require("chalk");
+const { cyan, bold } = require("chalk");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.argument("name", { type: String, required: false });
+    this.startTime = Date.now();
   }
 
   async prompting() {
-    this.log(`Welcome to the ${green("knex + express")} generator!`);
-
     const prompts = this.options.name
       ? []
       : [
@@ -32,6 +31,8 @@ module.exports = class extends Generator {
   }
 
   writing() {
+    const projectFolder = bold.green(`${process.cwd()}`);
+    this.log(`Creating a new project in ${projectFolder}.`);
     this.fs.copyTpl(this.templatePath(""), this.destinationPath(""), {
       name: this.name
     });
@@ -41,15 +42,24 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.npmInstall(["express", "knex", "pg", "body-parser"], {
-      "save-dev": false
-    });
+    this.log(
+      `Installing ${cyan("express")}, ${cyan("knex")}, ${cyan(
+        "pg"
+      )}, and ${cyan("body-parser")}...`
+    );
+    this.npmInstall(["express", "knex", "pg", "body-parser"]);
+    this.log(
+      `Installing ${cyan("mocha")}, ${cyan("chai")}, ${cyan(
+        "supertest"
+      )}, and ${cyan("nodemon")} as dev dependencies...`
+    );
     this.npmInstall(["mocha", "chai", "supertest", "nodemon"], {
       "save-dev": true
     });
   }
 
   _git() {
+    this.log("Initialized a git repository.");
     this.spawnCommandSync("git", ["init", "--quiet"]);
     this.spawnCommandSync("git", ["add", "--all"]);
     this.spawnCommandSync("git", ["commit", "-m", "initial commit", "--quiet"]);
@@ -57,6 +67,7 @@ module.exports = class extends Generator {
 
   end() {
     this._git();
-    this.log(`${green("all done!")}✨`);
+    const timeTaken = (Date.now() - this.startTime) / 1000;
+    this.log(`✨ ${bold.green("Done")} in ${timeTaken}s`);
   }
 };
