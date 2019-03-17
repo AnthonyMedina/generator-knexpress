@@ -1,6 +1,6 @@
 {
   "name": "generator-knexpress",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "boilerplate for a RESTful API built with express, knex and pg",
   "homepage": "https://github.com/AnthonyMedina/knexpress",
   "author": {
