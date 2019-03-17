@@ -24,15 +24,15 @@ module.exports = class extends Generator {
         ];
 
     return this.prompt(prompts).then(props => {
-      // To access props later use this.props.someAnswer;
       this.props = props;
     });
   }
 
   writing() {
-    this.fs.copy(
-      this.templatePath("dummyfile.txt"),
-      this.destinationPath("dummyfile.txt")
+    this.fs.copyTpl(
+      this.templatePath("package.json"),
+      this.destinationPath("package.json"),
+      { name: this.options.name || this.props.name }
     );
   }
 
