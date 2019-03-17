@@ -36,9 +36,8 @@ module.exports = class extends Generator {
   writing() {
     const name = this.options.name || this.props.name;
     this.fs.copyTpl(this.templatePath(""), this.destinationPath(""), { name });
-    const gitignore = `node_modules
-    knexfile.js`;
 
+    const gitignore = "node_modules\nknexfile.js\n.DS_Store";
     this.fs.write(".gitignore", gitignore);
   }
 
