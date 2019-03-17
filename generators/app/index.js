@@ -6,7 +6,6 @@ module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
     this.argument("name", { type: String, required: false });
-    this.startTime = Date.now();
   }
 
   async prompting() {
@@ -28,6 +27,7 @@ module.exports = class extends Generator {
   paths() {
     this.name = this.options.name || this.props.name;
     this.destinationRoot(this.name);
+    this.startTime = Date.now();
   }
 
   writing() {
