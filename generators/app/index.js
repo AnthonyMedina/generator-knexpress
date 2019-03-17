@@ -49,4 +49,14 @@ module.exports = class extends Generator {
       "save-dev": true
     });
   }
+
+  _git() {
+    this.spawnCommandSync("git", ["init", "--quiet"]);
+    this.spawnCommandSync("git", ["add", "--all"]);
+    this.spawnCommandSync("git", ["commit", "-m", "initial commit", "--quiet"]);
+  }
+
+  end() {
+    this._git();
+  }
 };
