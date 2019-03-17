@@ -9,15 +9,17 @@ const connection = require('../db/connection');
 const request = supertest(app);
 
 describe('/', () => {
-  beforeEach(() => connection.seed.run());
+  // beforeEach(() => connection.seed.run());
   after(() => connection.destroy());
 
   describe('/api', () => {
-    return request
-      .get('/api')
-      .expect(200)
-      .then(({ body }) => {
-        expect(body.ok).to.equal(true);
-      });
+    it('GET status:200', () => {
+      return request
+        .get('/api')
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.ok).to.equal(true);
+        });
+    });
   });
 });
