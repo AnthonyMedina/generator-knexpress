@@ -28,12 +28,14 @@ module.exports = class extends Generator {
     });
   }
 
+  paths() {
+    const name = this.options.name || this.props.name;
+    this.destinationRoot(name);
+  }
+
   writing() {
-    this.fs.copyTpl(
-      this.templatePath("_package.json"),
-      this.destinationPath("package.json"),
-      { name: this.options.name || this.props.name }
-    );
+    const name = this.options.name || this.props.name;
+    this.fs.copyTpl(this.templatePath(""), this.destinationPath(""), { name });
   }
 
   install() {
