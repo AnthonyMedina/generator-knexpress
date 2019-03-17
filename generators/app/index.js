@@ -9,7 +9,7 @@ module.exports = class extends Generator {
     this.argument("name", { type: String, required: false });
   }
 
-  prompting() {
+  async prompting() {
     this.log(yosay(`Welcome to the ${green("knex + express")} generator!`));
 
     const prompts = this.options.name
@@ -23,9 +23,8 @@ module.exports = class extends Generator {
           }
         ];
 
-    return this.prompt(prompts).then(props => {
-      this.props = props;
-    });
+    const props = await this.prompt(prompts);
+    this.props = props;
   }
 
   paths() {
