@@ -28,13 +28,14 @@ module.exports = class extends Generator {
   }
 
   paths() {
-    const name = this.options.name || this.props.name;
-    this.destinationRoot(name);
+    this.name = this.options.name || this.props.name;
+    this.destinationRoot(this.name);
   }
 
   writing() {
-    const name = this.options.name || this.props.name;
-    this.fs.copyTpl(this.templatePath(""), this.destinationPath(""), { name });
+    this.fs.copyTpl(this.templatePath(""), this.destinationPath(""), {
+      name: this.name
+    });
 
     const gitignore = "node_modules\nknexfile.js\n.DS_Store";
     this.fs.write(".gitignore", gitignore);
