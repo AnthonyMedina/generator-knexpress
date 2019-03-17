@@ -1,7 +1,6 @@
 "use strict";
 const Generator = require("yeoman-generator");
 const { green } = require("chalk");
-const yosay = require("yosay");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -10,7 +9,7 @@ module.exports = class extends Generator {
   }
 
   async prompting() {
-    this.log(yosay(`Welcome to the ${green("knex + express")} generator!`));
+    this.log(`Welcome to the ${green("knex + express")} generator!`);
 
     const prompts = this.options.name
       ? []
@@ -58,5 +57,6 @@ module.exports = class extends Generator {
 
   end() {
     this._git();
+    this.log(`${green("all done!")}✨`);
   }
 };
