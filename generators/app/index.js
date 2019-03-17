@@ -1,25 +1,18 @@
 "use strict";
 const Generator = require("yeoman-generator");
-const chalk = require("chalk");
+const { green } = require("chalk");
 const yosay = require("yosay");
 
 module.exports = class extends Generator {
   prompting() {
-    // Have Yeoman greet the user.
-    this.log(
-      yosay(
-        `Welcome to the gnarly ${chalk.red(
-          "generator-knex-express"
-        )} generator!`
-      )
-    );
+    this.log(yosay(`Welcome to the ${green("knex + express")} generator!`));
 
     const prompts = [
       {
-        type: "confirm",
-        name: "someAnswer",
-        message: "Would you like to enable this option?",
-        default: true
+        type: "input",
+        name: "name",
+        message: "What would you like to name this project?",
+        required: true
       }
     ];
 
@@ -37,6 +30,6 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.installDependencies();
+    this.npmInstall();
   }
 };
