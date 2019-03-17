@@ -37,6 +37,9 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.npmInstall();
+    this.npmInstall(["express", "knex", "pg", "body-parser"], {
+      "save-dev": false
+    });
+    this.npmInstall(["mocha", "chai", "supertest"], { "save-dev": true });
   }
 };
