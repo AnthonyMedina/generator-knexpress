@@ -36,12 +36,18 @@ module.exports = class extends Generator {
   writing() {
     const name = this.options.name || this.props.name;
     this.fs.copyTpl(this.templatePath(""), this.destinationPath(""), { name });
+    const gitignore = `node_modules
+    knexfile.js`;
+
+    this.fs.write(".gitignore", gitignore);
   }
 
   install() {
     this.npmInstall(["express", "knex", "pg", "body-parser"], {
       "save-dev": false
     });
-    this.npmInstall(["mocha", "chai", "supertest"], { "save-dev": true });
+    this.npmInstall(["mocha", "chai", "supertest", "nodemon"], {
+      "save-dev": true
+    });
   }
 };
