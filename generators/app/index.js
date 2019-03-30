@@ -1,6 +1,6 @@
 "use strict";
 const Generator = require("yeoman-generator");
-const { cyan, bold } = require("chalk");
+const { bold } = require("chalk");
 
 module.exports = class extends Generator {
   constructor(args, opts) {
@@ -42,20 +42,13 @@ module.exports = class extends Generator {
   }
 
   install() {
-    this.log(
-      `Installing ${cyan("express")}, ${cyan("knex")}, ${cyan(
-        "pg"
-      )}, and ${cyan("body-parser")}...`
-    );
-    this.npmInstall(["express", "knex", "pg", "body-parser"]);
-    this.log(
-      `Installing ${cyan("mocha")}, ${cyan("chai")}, ${cyan(
-        "supertest"
-      )}, and ${cyan("nodemon")} as dev dependencies...`
-    );
-    this.npmInstall(["mocha", "chai", "supertest", "nodemon"], {
-      "save-dev": true
-    });
+    const deps = ["express", "knex", "pg"];
+    const devDeps = ["mocha", "chai", "supertest", "nodemon"];
+
+    this.log("Installing dependencies...");
+    this.npmInstall(deps);
+    this.log("Installing dev dependencies...");
+    this.npmInstall(devDeps, { "save-dev": true });
   }
 
   _git() {
