@@ -65,8 +65,8 @@
     ]
   },
   "scripts": {
-    "pretest": "eslint .",
-    "test": "jest"
+    "pretest": "eslint . --fix",
+    "test": "jest __tests__/*"
   },
   "repository": "AnthonyMedina/generator-knex-express",
   "license": "MPL-2.0"
