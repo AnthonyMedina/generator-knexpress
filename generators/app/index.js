@@ -47,7 +47,6 @@ module.exports = class extends Generator {
 
     this.log("Installing dependencies...");
     this.npmInstall(deps);
-    this.log("Installing dev dependencies...");
     this.npmInstall(devDeps, { "save-dev": true });
   }
 
