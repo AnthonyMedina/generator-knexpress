@@ -33,6 +33,8 @@
   },
   "dependencies": {
     "chalk": "^2.1.0",
+    "kebab-case": "^1.0.0",
+    "to-snake-case": "^1.0.0",
     "yeoman-generator": "^2.0.1"
   },
   "jest": {
