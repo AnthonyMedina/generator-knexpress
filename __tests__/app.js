@@ -7,7 +7,7 @@ describe("generator-knex-express:app", () => {
   beforeAll(() => {
     return helpers
       .run(path.join(__dirname, "../generators/app"))
-      .withArguments(["project-name"]);
+      .withArguments(["project name"]);
   });
 
   it("creates files", () => {
@@ -36,5 +36,9 @@ describe("generator-knex-express:app", () => {
 
   it("initialises npm", () => {
     assert.file("package.json");
+  });
+
+  it("package name is name to snake case", () => {
+    assert.jsonFileContent("package.json", { name: "project_name" });
   });
 });

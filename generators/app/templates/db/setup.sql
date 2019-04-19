@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS <%= name %>;
-CREATE DATABASE <%= name %>;
+DROP DATABASE IF EXISTS <%= snakeCaseName %>;
+CREATE DATABASE <%= snakeCaseName %>;
 
-DROP DATABASE IF EXISTS <%= name %>_test;
-CREATE DATABASE <%= name %>_test;
+DROP DATABASE IF EXISTS <%= snakeCaseName %>_test;
+CREATE DATABASE <%= snakeCaseName %>_test;

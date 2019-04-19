@@ -1,7 +1,7 @@
 "use strict";
 const Generator = require("yeoman-generator");
 const { bold } = require("chalk");
-
+const snakeCase = require("lodash.snakecase");
 module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
@@ -33,8 +33,13 @@ module.exports = class extends Generator {
   writing() {
     const projectFolder = bold.green(`${process.cwd()}`);
     this.log(`Creating a new project in ${projectFolder}.`);
+
+    const name = this.name;
+    const snakeCaseName = snakeCase(name);
+
     this.fs.copyTpl(this.templatePath(""), this.destinationPath(""), {
-      name: this.name
+      name,
+      snakeCaseName
     });
 
     const gitignore = "node_modules\nknexfile.js\n.DS_Store";

@@ -13,14 +13,14 @@ const baseConfig = {
 const customConfigs = {
   development: {
     connection: {
-      database: '<%= name %>',
+      database: '<%= snakeCaseName %>',
       // username: "",
       // password: "",
     },
   },
   test: {
     connection: {
-      database: '<%= name %>_test',
+      database: '<%= snakeCaseName %>_test',
       // username: "",
       // password: "",
     },
